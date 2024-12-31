@@ -33,12 +33,13 @@
         }
 
         .category-box {
-            background: #2C0052; /* Box background color */
-            border: 1px solid #551A8B; /* Border color */
+            background: #2C0052;
+            border: 1px solid #551A8B;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            width: 300px; /* Box width */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            width: 425px;  /* Increased width */
+            height: 100px; /* Increased height */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -47,22 +48,20 @@
         }
 
         .category-box:hover {
-            transform: scale(1.05); /* Hover effect */
-            background-color: #551A8B; /* Darken background on hover */
+            transform: scale(1.08);  /* Slightly larger hover effect */
+            background-color: #551A8B;
         }
 
         .category-name {
-            font-size: 20px;
-            font-weight: 700; /* Bold category name */
-            margin-bottom: 10px;
-            color: #E0B3FF; /* Category name color */
+            font-size: 26px;  /* Larger font size for category name */
+            font-weight: 700;
+            margin-bottom: 15px;
         }
 
         .category-description {
-            font-size: 16px;
-            font-weight: 400; /* Normal weight description */
-            color: #D8BFD8; /* Softer light purple for description */
-            margin-bottom: 15px;
+            font-size: 18px;  /* Larger description text */
+            font-weight: 400;
+            color: #D8BFD8;
         }
     </style>
 </head>
