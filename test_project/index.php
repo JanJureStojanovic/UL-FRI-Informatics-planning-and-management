@@ -51,7 +51,7 @@ $urls = [
 
     // Route for categories (e.g., mainPage/Electronics)
     "mainPage/([a-zA-Z0-9_-]+)" => function ($categoryName) {
-        CategoriesController::show($categoryName);  // Pass the category name to the controller
+        CategoriesController::show($categoryName);
     },
 ];
 
