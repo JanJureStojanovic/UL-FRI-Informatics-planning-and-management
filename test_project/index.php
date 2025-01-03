@@ -10,6 +10,18 @@ define("BASE_URL", $_SERVER["SCRIPT_NAME"] . "/");
 
 $path = isset($_SERVER["PATH_INFO"]) ? trim($_SERVER["PATH_INFO"], "/") : "";
 
+require_once("model/DB.php");
+
+/*
+try {
+    $db = DBInit::getInstance();
+    echo "Database connection successful!";
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+*/
+
 // ROUTER: defines mapping between URLS and controllers
 $urls = [
     // Route for the main page

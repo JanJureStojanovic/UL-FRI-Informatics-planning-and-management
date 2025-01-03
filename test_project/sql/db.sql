@@ -5,7 +5,6 @@ CREATE DATABASE ep_project;
 
 USE ep_project;
 
-
 -- Users Table
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE users (
@@ -17,18 +16,18 @@ CREATE TABLE users (
     naslov VARCHAR(255) NOT NULL,
     hisna_st INT NOT NULL,
     postna_st INT NOT NULL,
-    active BOOLEAN DEFAULT TRUE,
+    active BOOLEAN DEFAULT TRUE
 );
 
 -- Vendors Table
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `vendors`;
 CREATE TABLE vendors (
     vendor_id INT AUTO_INCREMENT PRIMARY KEY,
     ime VARCHAR(50) NOT NULL,
     priimek VARCHAR(50) NOT NULL,
     enaslov VARCHAR(100) UNIQUE NOT NULL,
     geslo VARCHAR(255) NOT NULL,
-    active BOOLEAN DEFAULT TRUE,
+    active BOOLEAN DEFAULT TRUE
 );
 
 -- Admin Table
@@ -37,7 +36,7 @@ CREATE TABLE admin (
     ime VARCHAR(50) NOT NULL,
     priimek VARCHAR(50) NOT NULL,
     enaslov VARCHAR(100) UNIQUE NOT NULL,
-    geslo VARCHAR(255) NOT NULL,
+    geslo VARCHAR(255) NOT NULL
 );
 
 -- Items Table
@@ -50,7 +49,7 @@ CREATE TABLE items (
     vendor_id INT NOT NULL,
     category INT NOT NULL,
     active BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (vendor_id) REFERENCES users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (vendor_id) REFERENCES vendors(vendor_id) ON DELETE CASCADE
 );
 
 -- Transactions Table
