@@ -67,29 +67,13 @@
 </head>
 <body>
     <h1></h1>
-    <div class="categories-container">
-        <?php
-        // Example categories (this would be replaced with database fetch later)
-        $categories = [
-            ["name" => "Electronics", "description" => "Latest gadgets and devices", "id" => 1],
-            ["name" => "Furniture", "description" => "Stylish and comfortable furniture", "id" => 2],
-            ["name" => "Clothing", "description" => "Trendy apparel for all seasons", "id" => 3],
-            ["name" => "Toys", "description" => "Fun toys for children of all ages", "id" => 4],
-            ["name" => "Sports", "description" => "Equipment and gear for outdoor activities", "id" => 5],
-            ["name" => "Books", "description" => "A wide range of reading material", "id" => 6]
-        ];
-
-        // Loop through categories and display them
-        foreach ($categories as $category) {
-            echo "
-                <div class='category-box' onclick='window.location.href=\"" . BASE_URL . "mainPage/" . urlencode($category['name']) . "\"'>
-                    <div class='category-name'>" . htmlspecialchars($category['name']) . "</div>
-                    <div class='category-description'>" . htmlspecialchars($category['description']) . "</div>
-                </div>
-            ";
-        }      
-        ?>
+    <?php foreach ($categories as $category): ?>
+    <div class="category-box">
+        <a href="<?php echo BASE_URL . 'mainPage/' . htmlspecialchars($category['name']) . '/' . htmlspecialchars($category['id']); ?>">
+            <?php echo htmlspecialchars($category['name']); ?>
+        </a>
     </div>
+<?php endforeach; ?>
 </body>
 </html>
 

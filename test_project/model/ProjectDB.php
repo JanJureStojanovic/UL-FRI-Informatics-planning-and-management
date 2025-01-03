@@ -52,10 +52,16 @@ class ProjectDB extends AbstractDB {
         return parent::query("SELECT * FROM items ORDER BY item_id ASC");
     }
 
-    public static function get_items_by_category(array $params) {
-        return parent::query("SELECT * FROM items WHERE category = :category AND active = TRUE ORDER BY item_id ASC", $params);
-    }
-    
+    public static function getItemsByCategory($categoryId) {
+        $db = DBInit::getInstance();
+        $statement = $db->prepare("
+            SELECT * FROM items
+            WHERE category = :categoryId AND active = TRUE
+        ");
+        $statement->bindParam(":categoryId", $categoryId, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll();
+    }    
     
     // Transactions
 

@@ -2,8 +2,6 @@
 
 require_once("ViewHelper.php");
 
-require_once("ViewHelper.php");
-
 class CategoriesController {
 
     // Show category by name

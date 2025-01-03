@@ -65,6 +65,10 @@ $urls = [
     "mainPage/([a-zA-Z0-9_-]+)" => function ($categoryName) {
         CategoriesController::show($categoryName);
     },
+
+    "mainPage/([a-zA-Z0-9_-]+)/([0-9]+)" => function ($categoryName, $categoryId) {
+        ItemController::displayItemsByCategory($categoryName, $categoryId);
+    },
 ];
 
 try {
