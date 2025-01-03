@@ -38,8 +38,8 @@
             border-radius: 10px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
             padding: 30px;
-            width: 300px;
-            height: 150px;
+            width: 600px;
+            height: 250px;
             display: flex;
             flex-direction: column;
             align-items: center;
