@@ -3,16 +3,15 @@
 // enables sessions for the entire app
 session_start();
 
-require_once("controller/MainController.php");
-require_once("controller/CategoriesController.php");
+require_once("controller/Controller.php");
 
 define("BASE_URL", $_SERVER["SCRIPT_NAME"] . "/");
 
 $path = isset($_SERVER["PATH_INFO"]) ? trim($_SERVER["PATH_INFO"], "/") : "";
 
+/*
 require_once("model/DB.php");
 
-/*
 try {
     $db = DBInit::getInstance();
     echo "Database connection successful!";
@@ -61,13 +60,20 @@ $urls = [
         ViewHelper::redirect(BASE_URL . "mainPage");
     },
 
-    // Route for categories (e.g., mainPage/Electronics)
-    "mainPage/([a-zA-Z0-9_-]+)" => function ($categoryName) {
-        CategoriesController::show($categoryName);
+    "mainPage/Shoes" => function () {
+        ItemController::displayItemsByCategory('Shoes');
     },
 
-    "mainPage/([a-zA-Z0-9_-]+)/([0-9]+)" => function ($categoryName, $categoryId) {
-        ItemController::displayItemsByCategory($categoryName, $categoryId);
+    "mainPage/Clothes" => function () {
+        ItemController::displayItemsByCategory('Clothes');
+    },
+
+    "mainPage/Accessories" => function () {
+        ItemController::displayItemsByCategory('Accessories');
+    },
+    
+    "mainPage/Gifts" => function () {
+        ItemController::displayItemsByCategory('Gifts');
     },
 ];
 

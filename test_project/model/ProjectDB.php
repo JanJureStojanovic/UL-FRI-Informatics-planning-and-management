@@ -7,11 +7,11 @@ class ProjectDB extends AbstractDB {
     // Users
 
     public static function add_user(array $params) {
-        return parent::modify("INSERT INTO users (ime, priimek, enaslov, geslo, tip, active) VALUES (:ime, :priimek, :enaslov, :geslo, :tip, :active)", $params);
+        return parent::modify("INSERT INTO users (ime, priimek, enaslov, geslo, naslov, hisna_st, postna_st, active) VALUES (:user_id, :ime, :priimek, :enaslov, :geslo, :naslov, :hisna_st, :postna_st, :active)", $params);
     }
 
     public static function update_user(array $params) {
-        return parent::modify("UPDATE users SET ime = :ime, priimek = :priimek, enaslov = :enaslov, tip = :tip, active = :active WHERE user_id = :user_id", $params);
+        return parent::modify("UPDATE users SET ime = :ime, priimek = :priimek, enaslov = :enaslov, naslov = :naslov, hisna_st = :hisna_st, postna_st = :postna_st WHERE user_id = :user_id", $params);
     }
 
     public static function delete_user(int $id) {
@@ -24,18 +24,18 @@ class ProjectDB extends AbstractDB {
         throw new Exception("User not found");
     }
 
-    public static function getAll_users() {
+    public static function get_all_users() {
         return parent::query("SELECT * FROM users ORDER BY user_id ASC");
     }
 
     // Items
 
     public static function add_item(array $params) {
-        return parent::modify("INSERT INTO items (ime, opis, price, vendor_id, active) VALUES (:ime, :opis, :price, :vendor_id, :active)", $params);
+        return parent::modify("INSERT INTO items (ime, opis, price, vendor_id, category, active) VALUES (:ime, :opis, :price, :vendor_id, :category, :active)", $params);
     }
 
     public static function update_item(array $params) {
-        return parent::modify("UPDATE items SET ime = :ime, opis = :opis, price = :price, vendor_id = :vendor_id, active = :active WHERE item_id = :item_id", $params);
+        return parent::modify("UPDATE items SET ime = :ime, opis = :opis, price = :price, vendor_id = :vendor_id, category = :category, active = :active WHERE item_id = :item_id", $params);
     }
 
     public static function delete_item(int $id) {
@@ -48,11 +48,11 @@ class ProjectDB extends AbstractDB {
         throw new Exception("Item not found");
     }
 
-    public static function getAll_item() {
+    public static function get_all_item() {
         return parent::query("SELECT * FROM items ORDER BY item_id ASC");
     }
 
-    public static function getItemsByCategory($categoryId) {
+    public static function get_items_by_category($categoryId) {
         $db = DBInit::getInstance();
         $statement = $db->prepare("
             SELECT * FROM items
@@ -61,8 +61,8 @@ class ProjectDB extends AbstractDB {
         $statement->bindParam(":categoryId", $categoryId, PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll();
-    }    
-    
+    }
+
     // Transactions
 
     public static function add_transaction(array $params) {

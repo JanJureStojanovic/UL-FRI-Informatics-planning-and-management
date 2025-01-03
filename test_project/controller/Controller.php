@@ -5,7 +5,10 @@ require_once("ViewHelper.php");
 class MainController {
     
     public static function mainPage() {
-        echo ViewHelper::render("view/displayCategories.php");
+        // Fetch categories from the databas
+
+        // Pass categories to the view
+        ViewHelper::render("view/displayCategories.php");
     }
 
     // This method is for showing the admin login form (GET request)
@@ -67,5 +70,61 @@ class MainController {
     private static function checkCredentials($username, $password) {
         // Example check (replace this with your actual validation logic)
         return ($username === 'admin' && $password === 'password'); // Example: hardcoded credentials
+    }
+}
+
+class CategoryController {
+
+    // Show category by name
+    public static function show($categoryName) {
+        // Mock items related to the category
+        $items = [
+            "Electronics" => [
+                ["name" => "Laptop", "description" => "High performance laptop", "price" => "$1200"],
+                ["name" => "Smartphone", "description" => "Latest model", "price" => "$800"]
+            ],
+            "Furniture" => [
+                ["name" => "Chair", "description" => "Comfortable office chair", "price" => "$150"],
+                ["name" => "Table", "description" => "Wooden dining table", "price" => "$300"]
+            ],
+            "Clothing" => [
+                ["name" => "T-shirt", "description" => "Comfortable cotton t-shirt", "price" => "$20"],
+                ["name" => "Jeans", "description" => "Slim fit jeans", "price" => "$40"]
+            ],
+            // Add more categories and items as needed
+        ];
+
+        // Check if category exists
+        if (array_key_exists($categoryName, $items)) {
+            // Render the category page with the items
+            echo "<h1>Welcome to the " . htmlspecialchars($categoryName) . " category!</h1>";
+            echo "<p>Here are some items:</p>";
+            
+            foreach ($items[$categoryName] as $item) {
+                echo "<p>" . htmlspecialchars($item['name']) . ": " . htmlspecialchars($item['price']) . "</p>";
+            }
+        } else {
+            echo "<h1>Category not found.</h1>";
+        }
+    }
+}
+
+class ItemController {
+    
+    public static function display_items_by_category($categoryName) {
+        // Fetch items for the given category
+        $items = ProjectDB::getItemsByCategoryName($categoryName);
+
+        // Determine the appropriate view file based on the category
+        $viewFile = __DIR__ . "/../view/display" . $categoryName . ".php";
+
+        if (file_exists($viewFile)) {
+            ViewHelper::render($viewFile, [
+                "items" => $items,
+                "categoryName" => $categoryName
+            ]);
+        } else {
+            echo "Category view not found.";
+        }
     }
 }

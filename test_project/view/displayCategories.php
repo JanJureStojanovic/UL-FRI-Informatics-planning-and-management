@@ -16,8 +16,8 @@
             font-family: "Poppins", serif;
             margin: 0;
             padding: 20px;
-            background-color: whitesmoke; /* Background color */
-            color: #E0B3FF; /* Light purple for text */
+            background-color: whitesmoke;
+            color: #2C0052;
         }
 
         h1 {
@@ -38,12 +38,16 @@
             border-radius: 10px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
             padding: 30px;
-            width: 425px;  /* Increased width */
-            height: 100px; /* Increased height */
+            width: 300px;
+            height: 150px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            text-decoration: none; /* Remove underline */
+            color: #E0B3FF; /* Light purple text */
+            font-weight: 700;
             transition: transform 0.2s, background-color 0.2s;
         }
 
@@ -53,27 +57,27 @@
         }
 
         .category-name {
-            font-size: 26px;  /* Larger font size for category name */
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .category-description {
-            font-size: 18px;  /* Larger description text */
-            font-weight: 400;
-            color: #D8BFD8;
+            font-size: 20px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
     <h1></h1>
-    <?php foreach ($categories as $category): ?>
-    <div class="category-box">
-        <a href="<?php echo BASE_URL . 'mainPage/' . htmlspecialchars($category['name']) . '/' . htmlspecialchars($category['id']); ?>">
-            <?php echo htmlspecialchars($category['name']); ?>
+    <div class="categories-container">
+        <a href="<?= BASE_URL . 'mainPage/Shoes' ?>" class="category-box">
+            <div class="category-name">Shoes</div>
+        </a>
+        <a href="<?= BASE_URL . 'mainPage/Clothes' ?>" class="category-box">
+            <div class="category-name">Clothes</div>
+        </a>
+        <a href="<?= BASE_URL . 'mainPage/Accessories' ?>" class="category-box">
+            <div class="category-name">Accessories</div>
+        </a>
+        <a href="<?= BASE_URL . 'mainPage/Gifts' ?>" class="category-box">
+            <div class="category-name">Gifts</div>
         </a>
     </div>
-<?php endforeach; ?>
 </body>
 </html>
 
